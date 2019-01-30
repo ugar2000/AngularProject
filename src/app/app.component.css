@@ -1,0 +1,18 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+  }
+  
+button.but{
+    width:100px;
+    height:50px;
+}
+
+  .example-full-width {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
