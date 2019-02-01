@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import {HttpClientModule} from '@angular/common/http';
 import { MaterialAppModule } from './ngmaterial.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 export function RestangularConfigFactory (RestangularProvider) {
   RestangularProvider.setBaseUrl('');
   RestangularProvider.setDefaultHeaders({'Authorization': 'Bearer UDXPx-Xko0w4BRKajozCVy20X11MRZs1'});
@@ -21,7 +23,8 @@ export function RestangularConfigFactory (RestangularProvider) {
     AppRoutingModule,
     HttpClientModule,
     RestangularModule.forRoot(RestangularConfigFactory),
-    MaterialAppModule, 
+    MaterialAppModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }), 
    
   ],
   providers: [],
