@@ -1,21 +1,40 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { calc } from './services/calc.service';
 import { first } from 'rxjs/operators';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+
+
+
+
+export class AppComponent implements OnInit {
   inputdata: string;
   title = 'itsNewProject';
+  status = 'ONLINE';
+  isConnected = true;
+
+
 
 
   @ViewChild('inputdata') _inputdata;
-  constructor(private cAlc: calc) { }
-
-
+  constructor(private cAlc: calc, private connectionService: ConnectionService) {}
+   
+  
+  ngOnInit(){
+      this.connectionService.monitor().subscribe(isConnected => {
+        this.isConnected = isConnected;
+        if (this.isConnected) {
+          this.status = "ONLINE";
+        }
+        else {
+          this.status = "OFFLINE";
+        }})
+    }
 
   addItem(inputdata) {
     this.inputdata = inputdata;
@@ -33,6 +52,9 @@ export class AppComponent {
     this.cAlc.postcalculate(this.inputdata).pipe(first()).subscribe(resp => {
       console.log(resp.result);
       this._inputdata.nativeElement.value = resp.result;
+    },
+    error => {
+      console.log(error);
     });
 
     
@@ -51,5 +73,6 @@ export class AppComponent {
     this._inputdata.nativeElement.value = ''
 
   }
+
 
 }

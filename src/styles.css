@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    min-width: 97vw;
+    min-height: 95vh;    
+    background-image: url(assets/img1.jfif); 
+    background-repeat: no-repeat;
+    background-size: 100vmax 100vmax;
+}

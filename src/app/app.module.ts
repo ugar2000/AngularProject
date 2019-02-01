@@ -19,8 +19,10 @@ export function RestangularConfigFactory (RestangularProvider) {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     RestangularModule.forRoot(RestangularConfigFactory),
-    MaterialAppModule
+    MaterialAppModule, 
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

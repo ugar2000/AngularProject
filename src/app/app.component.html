@@ -1,63 +1,31 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-  </h1>
-</div>
-<h1  face="Arial" style="zoom: 1.8; text-align: center;  padding: 10px;">Calcualator</h1>
+<div class="wrapper">
+  <header class="header">
+    <p>Calculate</p>
+    <p>Статус: <span [ngStyle]="{'color':isConnected?'green':'red'}"> {{ status }}! </span></p>
+  </header>
+  <div class="main">
 
-<ng-content></ng-content>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <textarea matInput #inputdata placeholder="Data"></textarea>
+      </mat-form-field>
+    </form>
 
-<table style="margin-left: auto;
-margin-right: auto;
-width: 6em;
-zoom: 2;">
+    <div class="items-wrapper">
+      <div class="item" *ngFor="let item of [].constructor(10); let i = index">
+        <button class="numbut" mat-button (click)='addNumberToLine((i + 1) % 10)'><h1>{{(i + 1) % 10}}</h1></button>
+          
+      </div>
 
-<tr>
-    <th></th>
-    <th> <input style="width: 300% - 100px; background-color: transparent; border: none" matInput type="text" id="inputdata" #inputdata placeholder = "Data"/></th>
-    <th></th>
-</tr>
+    </div>
 
-<tr>
-<th><button class = "but" mat-button (click)='addNumberToLine(1)'><h1>1</h1></button></th>
-<th><button class = "but" mat-button (click)='addNumberToLine(2)'><h1>2</h1></button></th>
-<th><button class = "but" mat-button (click)='addNumberToLine(3)'><h1>3</h1></button></th>
-</tr>
+    <footer class="footer">
+      <button class="funcbutt" mat-raised-button (click)="addItem(inputdata.value)">Solution</button>
+      <button class="funcbutt" mat-raised-button (click)="clear() ">Delete</button>
+    </footer>
+  </div>
 
-<tr>
-  <th><button class = "but" mat-button (click)='addNumberToLine(4)' ><h1>4</h1></button></th>
-  <th><button class = "but" mat-button (click)='addNumberToLine(5)' ><h1>5</h1></button></th>
-  <th><button class = "but" mat-button (click)='addNumberToLine(6)'><h1>6</h1></button></th>
-  </tr>
 
-  <tr>
-    <th><button class = "but" mat-button (click)='addNumberToLine(7)'><h1>7</h1></button></th>
-    <th><button class = "but" mat-button (click)='addNumberToLine(8)'><h1>8</h1></button></th>
-    <th><button class = "but" mat-button (click)='addNumberToLine(9)'><h1>9</h1></button></th>
-    </tr>
-  <tr>
 
-    <tr>
-      <th><button class = "but" mat-button (click)='addNumberToLine("-")'><h1>-</h1></button></th>
-      <th><button class = "but" mat-button (click)='addNumberToLine(0)'><h1>0</h1></button></th>
-      <th><button class = "but" mat-button (click)='addNumberToLine("+")'><h1>+</h1></button></th>
-    </tr> 
 
-    <tr>
-        <th><button class = "but" mat-button (click)='addNumberToLine("*")'><h1>*</h1></button></th>
-        <th><button class = "but" mat-button (click)='addNumberToLine("^")'><h1>^</h1></button></th>
-        <th><button class = "but" mat-button (click)='addNumberToLine("/")'><h1>/</h1></button></th>
-      </tr> 
-    </table>
-    <table style="margin-left: auto;
-    margin-right: auto;
-    width: 6em; 
-    zoom: 2">
-    <tr>
-        <th><button style="width:150px;height:30px" mat-button (click)="addItem(inputdata.value)">Solution</button></th>
-    <th><button style="width:150px;height:30px" mat-button (click)="clear() ">Delete</button></th>
-  </tr>
-
-</table>
-
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
